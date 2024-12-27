@@ -24,9 +24,13 @@ def insertMealLog():
 
 def main():
     sql = SqliteUtil()
-    initDatabase(sql)
-    insertUser(sql, 'Bob')
-    insertMeal(sql, 'Bob', 'Philly Cheesesteak', 604, 50, 40, 40)
+    # initDatabase(sql)
+    # insertUser(sql, 'Bob')
+    # insertMeal(sql, 'Bob', 'Philly Cheesesteak', 604, 50, 40, 40)
+    print(sql.queryToList('''select * from user'''))
+    res = sql.queryToVal("""select id from user where name = 'Will'""", bool)
+    print(res , type(res))
+    print(sql.queryToDict("""select * from meal"""))
 
 
 
