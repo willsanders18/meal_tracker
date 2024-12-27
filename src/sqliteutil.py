@@ -40,3 +40,13 @@ class SqliteUtil:
         s = self._getSqlFromFile(filename)
         self._executeAnySql(s)
         
+    def executeSqlWithParam(self, query:str, params:list):
+        with self._getConnection() as con:
+            cur: sqlite3.Cursor = con.cursor()
+            cur.execute(query, params)
+            con.commit()
+
+    def executeSqlFromFileWithParam(self, filename:str, params:list):
+        s = self._getSqlFromFile(filename)
+        print(params)
+        self.executeSqlWithParam(s, params)
