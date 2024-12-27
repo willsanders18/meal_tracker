@@ -48,5 +48,14 @@ class SqliteUtil:
 
     def executeSqlFromFileWithParam(self, filename:str, params:list):
         s = self._getSqlFromFile(filename)
-        print(params)
         self.executeSqlWithParam(s, params)
+
+    
+    def queryToVal():
+        pass
+
+    def queryToList():
+        pass
+
+    def queryToDict():
+        pass
