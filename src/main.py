@@ -21,8 +21,9 @@ def insertWeight(util:SqliteUtil, userid:int, weight:int, measuredate:int):
     util.executeSqlFromFileWithParam('insert_weight', t)
 
 # TODO
-def insertMealLog():
-    pass
+def insertMealLog(util:SqliteUtil, username:str, mealname:str, date:str):
+    t = [username, mealname, date]
+    util.executeSqlFromFileWithParam('insert_meallog', t)
 
 def main():
     sql = SqliteUtil()
@@ -33,8 +34,7 @@ def main():
     # res = sql.queryToVal("""select id from user where name = 'Will'""", bool)
     # print(res , type(res))
     # print(sql.queryToDict("""select * from meal"""))
-    insertWeight(sql, 1, 170, '12/27/2024')
-
+    insertMealLog(sql, 'Will', 'Philly Cheesesteak', '2024-12-28 00:09:00')
 
 
 if __name__ == "__main__":
