@@ -40,3 +40,31 @@ class SqliteUtil:
         s = self._getSqlFromFile(filename)
         self._executeAnySql(s)
         
+    def executeSqlWithParam(self, query:str, params:list):
+        with self._getConnection() as con:
+            cur: sqlite3.Cursor = con.cursor()
+            cur.execute(query, params)
+            con.commit()
+
+    def executeSqlFromFileWithParam(self, filename:str, params:list):
+        s = self._getSqlFromFile(filename)
+        self.executeSqlWithParam(s, params)
+
+    def queryToList(self, query:str) -> list[list]:
+        with self._getConnection() as con:
+            cur: sqlite3.Cursor = con.cursor()
+            return cur.execute(query).fetchall()
+
+    def queryToVal(self, query:str, dtype:type=str) -> str|int|bool|float:    
+        if dtype not in [str, int, float, bool]:
+            raise ValueError('Specified type is invalid')
+
+        with self._getConnection() as con:
+            cur: sqlite3.Cursor = con.cursor()
+            return dtype(cur.execute(query).fetchall()[0][0])
+
+    def queryToDict(self, query:str) -> list[dict]:
+        with self._getConnection() as con:
+            con.row_factory = sqlite3.Row
+            cur: sqlite3.Cursor = con.cursor()
+            return [dict(row) for row in cur.execute(query).fetchall()]
