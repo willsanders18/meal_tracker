@@ -10,8 +10,8 @@ class Tracker:
         self.util.executeSqlFromFile("create_weight")
         self.util.executeSqlFromFile("create_meallog")
 
-    def insertUser(self, name:list):
-        t = [name]
+    def insertUser(self, name:str, a:int, h:int, s:str):
+        t = [name, a, h, s]
         self.util.executeSqlFromFileWithParam('insert_user', t)
 
     def insertMeal(self, username:str, m:str, cal:int, carb:int, f:int, p:int):

@@ -7,7 +7,7 @@ def main():
     track = Tracker(sql)
     track.initDatabase()
     # initDatabase(sql)
-    track.insertUser('Samuel')
+    track.insertUser('Will', 21, 73, 'male')
     # # insertMeal(sql, 'Bob', 'Philly Cheesesteak', 604, 50, 40, 40)
     # # print(sql.queryToList('''select * from user'''))
     # # res = sql.queryToVal("""select id from user where name = 'Will'""", bool)
