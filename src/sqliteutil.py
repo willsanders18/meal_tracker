@@ -62,6 +62,14 @@ class SqliteUtil:
         with self._getConnection() as con:
             cur: sqlite3.Cursor = con.cursor()
             return dtype(cur.execute(query).fetchall()[0][0])
+        
+    def queryToValWithParam(self, query:str, params:list, dtype:type=str) -> str|int|bool|float:
+        if dtype not in [str, int, float, bool]:
+            raise ValueError('Specified type is invalid')
+
+        with self._getConnection() as con:
+            cur: sqlite3.Cursor = con.cursor()
+            return dtype(cur.execute(query, params).fetchall()[0][0])
 
     def queryToDict(self, query:str) -> list[dict]:
         with self._getConnection() as con:

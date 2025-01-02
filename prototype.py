@@ -72,7 +72,7 @@ def main():
 
     # While loop to keep program running until the user quits
     while True:
-        ask = input('What would you like to do?\n Add Meal (a)\n BMI (b)\n Data Analysis (d)\n Maitenance Calories (m)\n Random Meal Suggestion (r)\n Quit (q)\n') 
+        ask = input('What would you like to do?\n Add Meal (a)\n BMI (b)\n Data Analysis (d)\n Maintenance Calories (m)\n Random Meal Suggestion (r)\n Quit (q)\n') 
 
         # If-statements for each possible user input
         if ask == 'a':
