@@ -6,16 +6,24 @@ def main():
     sql = SqliteUtil()
     track = Tracker(sql)
     track.initDatabase()
-    # initDatabase(sql)
-    track.insertUser('Will', 21, 73, 'male')
-    # # insertMeal(sql, 'Bob', 'Philly Cheesesteak', 604, 50, 40, 40)
-    # # print(sql.queryToList('''select * from user'''))
-    # # res = sql.queryToVal("""select id from user where name = 'Will'""", bool)
-    # # print(res , type(res))
-    # # print(sql.queryToDict("""select * from meal"""))
-    # # insertMealLog(sql, 'Will', 'Philly Cheesesteak', '2024-12-28 00:09:00')
-    # insertWeight(sql, 'Will', 185, '2024-12-28 00:28:00')
-
+    while True:
+        username = str(input('Enter your name: '))
+        # if username.capitalize()
+        names = track.getAllNames()
+        
+        if username.capitalize() in names:
+            print(f'{username} recognized')
+        else:
+            ask = str(input(f'{username} not recognized, would you like to create a new user? (y/n): '))
+            if ask.lower() == 'y':
+                track.newUser()
+            elif ask.lower == 'n':
+                print('Thank you, quitting program...')
+                break
+            else:
+                print('Invalid response, ending test...')
+                break
+        break
 
 if __name__ == "__main__":
     main()

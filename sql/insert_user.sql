@@ -12,5 +12,5 @@ select
     ? as sex    
 ) d 
 left join user u
-    on d.name = u.name
+    on UPPER(d.name) = UPPER(u.name)
 where u.id is null

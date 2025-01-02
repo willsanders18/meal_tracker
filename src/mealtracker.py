@@ -25,3 +25,20 @@ class Tracker:
     def insertMealLog(self, username:str, mealname:str, date:str):
         t = [username, mealname, date]
         self.util.executeSqlFromFileWithParam('insert_meallog', t)
+
+    def getAllNames(self):
+        q = self.util._getSqlFromFile('select_all_names')
+        names = self.util.queryToList(q)
+
+        namesList = []
+
+        for i in names:
+            namesList.append(i[0])
+        return namesList
+
+    def newUser(self):
+        n = str(input('Enter your name: '))
+        a = int(input('Enter your age: '))
+        h = int(input('Enter your height in inches: '))
+        s = str(input('Enter your sex: '))
+        self.insertUser(n, a, h, s)
