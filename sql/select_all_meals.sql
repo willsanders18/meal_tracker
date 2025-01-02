@@ -1,0 +1,2 @@
+select mealname
+from meal

@@ -69,7 +69,11 @@ class SqliteUtil:
 
         with self._getConnection() as con:
             cur: sqlite3.Cursor = con.cursor()
-            return dtype(cur.execute(query, params).fetchall()[0][0])
+            result = cur.execute(query, params).fetchall()
+            if result:
+                return dtype(result[0][0])
+            else:
+                return None
 
     def queryToDict(self, query:str) -> list[dict]:
         with self._getConnection() as con:
