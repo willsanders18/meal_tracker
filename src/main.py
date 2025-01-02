@@ -27,10 +27,12 @@ def main():
         break
 
     while True:
-        ask = input('What would you like to do?\n Add Meal (a)\n Quit (q)\n')
+        ask = input('What would you like to do?\n Add Meal (a)\n Insert Weight (w) \nQuit (q)\n')
 
         if ask.lower() == 'a':
             track.newMeal()
+        elif ask.lower() == 'w':
+            track.newWeight()
         elif ask.lower() == 'q':
             break
         else:

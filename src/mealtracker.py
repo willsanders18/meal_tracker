@@ -33,7 +33,7 @@ class Tracker:
         t = [username, m, cal, carb, f, p]
         self.util.executeSqlFromFileWithParam('insert_meal', t)
 
-    def insertWeight(self, username:str, weight:int, measuredate:int):
+    def insertWeight(self, username:str, weight:int, measuredate:str):
         t = [username, weight, measuredate]
         self.util.executeSqlFromFileWithParam('insert_weight', t)
 
@@ -68,6 +68,7 @@ class Tracker:
         s = str(input('Enter your sex: '))
         self.insertUser(n, a, h, s)
         self.setUsername(n)
+        self.newWeight()
 
     def newMeal(self):
         name = input("Enter meal name: ")
@@ -90,4 +91,23 @@ class Tracker:
             mealdate = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.insertMealLog(self.username, name, mealdate)
 
-
+    def newWeight(self):
+        while True:
+            w = input("Please enter your current weight in pounds: ")
+            if not w:
+                print('Please enter a value')
+                input('Press enter to continue...')
+                '''
+                - Weight must be numeric
+                - Must be an integer
+                - Must be positive
+                - Must be over 90 pounds
+                - Must be less than 1000
+                '''
+            elif not w.isnumeric() or not w.isdigit() or int(w) < 90 or int(w) > 1000:
+                print('Invalid input, please try again')
+                input('Press enter to continue...')
+            else:
+                measuredate = dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                self.insertWeight(self.username, int(w), measuredate)
+                break
